@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Initial') {
+        stage("Initial") {
             steps {
-                echo 'Hello..This code is pulled from GitHub Repo'
+                echo "Hello..This code is pulled from GitHub Repo"
             }
         }
     }
