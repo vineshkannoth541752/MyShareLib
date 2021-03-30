@@ -1,0 +1,7 @@
+def readFile()
+{
+string filePath = "InputFIleCaseStudy.csv"
+File myfile = new File("filePath");
+//read entire content
+println myfile.text
+}
