@@ -5,7 +5,11 @@ pipeline {
         stage("Initial") {
             steps {
                 echo "Hello..This code is pulled from GitHub Repo"
-                readFile();
+                string filePath = "InputFIleCaseStudy.csv"
+File myfile = new File("filePath");
+//read entire content
+println myfile.text
+                //readFile();
             }
         }
     }
