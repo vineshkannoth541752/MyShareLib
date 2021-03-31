@@ -120,7 +120,7 @@ try {
 
 	writer.write(output.toString());
 
-	System.out.println("done!");
+	System.out.println("output file written!");
 
 	println("____________________________________________")
 
