@@ -42,19 +42,19 @@ Map<String, List<CSVRecord>> recordFiltered =   StreamSupport
 
 for (Map.Entry<String, List<CSVRecord>> entry : recordFiltered.entrySet()) {
 
-
+        List<CSVRecord> failedList = null;
+	List<CSVRecord> passedList = null;
+	
 	List<CSVRecord> buildList = entry.getValue();	
 
-	List<CSVRecord> failedList = buildList.stream().filter({f -> f.get("Status").contains("Failed")})
+failedList = buildList.stream().filter({f -> f.get("Status").contains("Failed")})
 
 	.collect(Collectors.toList());
 
-	
 
-	List<CSVRecord> passedList = buildList.stream().filter({f -> !f.get("Status").contains("Passed")})
+	passedList = buildList.stream().filter({f -> !f.get("Status").contains("Failed")})
 
 	.collect(Collectors.toList());
-
 	
 
 	String delimitter = ",";
@@ -63,10 +63,8 @@ for (Map.Entry<String, List<CSVRecord>> entry : recordFiltered.entrySet()) {
 
 	String failedEnvList = "NA";
 
-	String comments = "NA";
-
+	String comments = "NA";	
 	
-
 	if (passedList != null && passedList.size() > 0) {
 
 		passedEnvList = passedList.stream().map({mp -> mp.get("Environment")}).collect(Collectors.joining("|"));
@@ -87,11 +85,7 @@ for (Map.Entry<String, List<CSVRecord>> entry : recordFiltered.entrySet()) {
 		if(!failComments.isEmpty()){
 		comments = failComments.get(0);
 		}
-;
 	}
-
-	
-
 	output.append('\n');
 
 	output.append(buildList.get(0).get("AppID") + delimitter);
@@ -105,11 +99,8 @@ for (Map.Entry<String, List<CSVRecord>> entry : recordFiltered.entrySet()) {
 	output.append(failedEnvList + delimitter);
 
 	output.append(comments);
-
-
-
+		
 }
-
 
 
 PrintWriter writer;
